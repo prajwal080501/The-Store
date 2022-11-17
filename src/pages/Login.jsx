@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
     //  create a login form
-    <div className="flex justify-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  items-center h-screen ">
+    <div className="flex justify-center   items-center h-screen ">
       <div className="w-1/3 bg-gray-100 p-5 rounded-md drop-shadow-md">
         <h1 className="text-4xl text-center font-bold text-black pb-5">
           The <span className="text-3xl text-red-500 animate-pulse">Pj</span> Store
@@ -24,6 +25,8 @@ const Login = () => {
             {/* privacy terms */}
             <p className="text-sm w-full text-gray-500 text-center mt-8">By continuing, you agree to The Pj Store's Terms of Use and Privacy Policy.</p>
           </div>
+          {/* dont have aaccount register */}
+          <p className="text-sm w-full text-gray-500 text-center mt-8">Don't have an account? <Link to="/register" className="text-red-500">Register</Link></p>
         </form>
       </div>
     </div>

@@ -27,7 +27,7 @@ function App() {
   }
   return (
     <Router>
-      <Announcement/>
+      <Announcement />
       <Navbar />
       <Mobilemenu />
       <div className="App scrollbar scrollbar-hide">
@@ -35,12 +35,14 @@ function App() {
           <Route path="/" element={<Home modalOpen={modalOpen} setModalOpen={setModalOpen} handleModal={handleModal} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/singleproduct" element={<Singleproduct />} />
+          <Route path="/singleproduct/:id" element={<Singleproduct />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/products" element={<ProductList />} />
+          <Route path={
+            "/products/:id"
+          } element={<ProductList />} />
         </Routes>
       </div>
-      <Footer/>
+      <Footer />
     </Router>
 
   );
