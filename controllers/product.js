@@ -36,65 +36,80 @@ export const updateProduct = async (req, res) => {
 }
 
 
-// export const deleteUser = async (req, res) => {
-//     try {
-//         await User.findByIdAndDelete(req.params.id);
-//         res.status(200).json({
-//             status: "success",
-//             code: 200,
-//             msg: "Account has been deleted",
-//         });
-//     }
-//     catch (err) {
-//         res.status(500).json(err);
-//     }
-// }
+export const deleteProduct = async (req, res) => {
+    try {
+        await Product.findByIdAndDelete(req.params.id);
+        res.status(200).json({
+            status: "success",
+            code: 200,
+            msg: "Product has been deleted",
+        });
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
+}
 
-// export const getUser = async (req, res) => {
-//     try {
-//         const user = await User.findById(req.params.id);
-//         const { password, ...other } = user._doc;
-//         res.status(200).json(other);
-//     }
-//     catch (err) {
-//         res.status(500).json(err);
-//     }
-// }
+export const getProduct = async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+        if (!product) {
+            res.status(404).json({
+                status: "error",
+                code: 404,
+                msg: "Product not found",
+            });
+        }
+        res.status(200).json(product);
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
+}
 
-// export const getAllUsers = async (req, res) => {
-//     const query = req.query.new;
+export const getAllProducts = async (req, res) => {
+    const queryNew = req.query.new;
+    const queryCategory = req.query.category;
+    const querySearch = req.query.search;
+    try {
+        let products;
+        if (queryNew) {
+            products = await Product.find().sort({ createdAt: -1 }).limit(1);
+        }
+        else if (querySearch) {
+            products = await Product.find({
+                title: {
+                    $regex: querySearch,
+                    $options: "i"
+                }
+            });
+        }
+        else if (queryCategory) {
+            products = await Product.find({
+                categories: {
+                    $in: [queryCategory]
+                }
+            });
+        }
+        else {
+            products = await Product.find();
+        }
+        res.status(200).json(products);
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
+}
 
-//     const users = query ? await User.find().sort({ _id: -1 }).limit(5) : await User.find();
-//     try {
-//         res.status(200).json(users);
-//     }
-//     catch (err) {
-//         res.status(500).json(err);
-//     }
-// }
+// function to get random products on every page load
+export const getRandProducts = async (req, res) => {
+    try {
+        const products = await Product.aggregate([{ $sample: { size: 8 } }]);
+        res.status(200).json(products);
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
+}
 
 
-// export const getUserStats = async (req, res) => {
-//     const today = new Date();
-//     const latYear = today.setFullYear(today.setFullYear() - 1);
-
-//     try {
-//         const data = await User.aggregate([
-//             {
-//                 $project: {
-//                     month: { $month: "$createdAt" }
-//                 }
-//             },
-//             {
-//                 $group: {
-//                     _id: "$month",
-//                     total: { $sum: 1 }
-//                 }
-//             }
-//         ]);
-//         res.status(200).json(data);
-//     }
-//     catch (err) {
-//         res.status(500).json(err);
-//     }
-// }

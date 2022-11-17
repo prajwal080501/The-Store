@@ -7,7 +7,7 @@ import productRoutes from "./routes/product.js";
 import cartRoutes from "./routes/cart.js";
 import cors from "cors"
 import userRoutes from "./routes/user.js";
-
+import stripeRoutes from "./routes/stripe.js";
 
 dotenv.config({
     path: './.env.local',
@@ -28,6 +28,9 @@ app.get('/', (req, res) => {
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/carts", cartRoutes);
+app.use("/api/checkout", stripeRoutes);
 
 const connectDB = async () => {
     try {
