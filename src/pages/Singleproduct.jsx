@@ -10,7 +10,7 @@ const Singleproduct = () => {
     useEffect(() => {
         const getProduct = async () => {
             try {
-                const res = await axios.get(`/api/products/find/${id}`);
+                const res = await axios.get(`https://thepjstore.herokuapp.com/api/products/find/${id}`);
                 setProduct(res.data);
                 console.log(product);
             } catch (err) {
