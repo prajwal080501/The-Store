@@ -3,7 +3,7 @@ import Sidebar from './Sidebar'
 
 const Mobilemenu = () => {
 
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleOpen = () => {
         setIsOpen(!isOpen);

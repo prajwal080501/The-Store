@@ -37,7 +37,7 @@ const Products = ({ category, filters, sort }) => {
         } else if (sort === "descending") {
             setFilteredProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
         }
-    })
+    }, [sort]);
 
 
 
@@ -45,19 +45,19 @@ const Products = ({ category, filters, sort }) => {
 
     return (
 
-        <div className="w-[100%] lg:w-[80%] bg-gray-100/20 shadow-sm  h-fit  mb-5 mt-0 mx-auto p-5 rounded-md drop-shadow-md">
+        <div className="max-w-7xl lg:w-[80%] bg-gray-100/20 shadow-sm h-fit place-content-evenly mb-5 mt-0 mx-auto p-5 rounded-md drop-shadow-md">
             <div>
-                <p className='text-2xl font-bold text-black'>Products</p>
+                <p className='text-3xl font-bold text-black'>Products</p>
                 <Link to="/singleproduct">
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center place-content-center place-items-center md:space-x-0">
+                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-center place-content-center place-items-center">
                         {
                             category ? filteredProducts.map((product) => (
                                 <Link to={`/singleproduct/${product._id}`}>
-                                <ProductItem key={product.id} product={product} />
+                                    <ProductItem key={product.id} product={product} />
                                 </Link>
                             )) : products.map((product) => (
                                 <Link to={`/singleproduct/${product._id}`}>
-                                <ProductItem key={product.id} product={product} />
+                                    <ProductItem key={product.id} product={product} />
                                 </Link>
                             ))
                         }

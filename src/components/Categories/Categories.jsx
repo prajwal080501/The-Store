@@ -5,11 +5,11 @@ import CategoryItem from './CategoryItem'
 
 const Categories = () => {
   return (
-    <div className="max-w-7xl h-fit mb-5 mt-0 mx-auto p-5 bg-transparent rounded">
+    <div className="max-w-7xl h-fit mb-5 mt-0 mx-auto p-2 bg-transparent rounded">
         <div>
             <p className='text-2xl font-bold text-black'>Shop by categories</p>
         </div>
-        <div className="flex flex-wrap justify-center">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center lg:space-x-0">
           
             {categories.map((category) => (
            

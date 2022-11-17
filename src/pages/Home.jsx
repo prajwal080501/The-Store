@@ -14,7 +14,7 @@ import Register from './Register'
 const Home = ({modalOpen, setModalOpen, handleModal, modalOpen2, handleModal2, setModalOpen2}) => {
 
     return (
-        <div className=''>
+        <div className='w-full h-full'>
             <Slider/>
             <Categories/>
             <Products/>

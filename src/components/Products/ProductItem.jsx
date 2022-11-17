@@ -2,24 +2,56 @@ import React from 'react'
 
 const ProductItem = ({ product }) => {
   return (
-    <div className='w-full'>
-      <div className="flex flex-col items-center justify-center w-52 h-82 md:w-[80%] md:h-fit mt-5 pb-2 rounded-lg shadow-md cursor-pointer hover:scale-105 duration-200 bg-white hover:opacity-90">
-        <img src={product.image} alt="" className="w-[70%] h-52 mt-5 object-contain" />
-        <h1 className="text-base font-extralight text-center mt-5 text-black">{product.title}</h1>
-        {/* add a descriprion */}
-        <p className="text-sm text-center mt-5 px-4 font-extralight text-gray-500">{product.description.length > 50 ? product.description.slice(0, 50) + '...' : product.description}</p>
-        {/* display rating */}
-        <div className="flex items-center justify-center mt-2 space-x-1">
-          <p className="text-sm font-extralight text-black">{product.rating}</p>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-
-            <path fillRule="evenodd" d="M10 2a1 1 0 01.894.553l2.447 4.895 5.332.777a1 1 0 01.553 1.789l-3.83 3.763.896 5.306a1 1 0 01-1.447 1.105L10 16.334l-4.553 2.39a1 1 0 01-1.447-1.105l.896-5.306-3.83-3.763a1 1 0 01.553-1.789l5.332-.777L9.106 2.553A1 1 0 0110 2z" clipRule="evenodd" />
-          </svg>
-        </div>
-        <div className='flex justify-between w-full p-3 items-center'>
-          <h1 className="text-sm font-semibold mt-5 text-black">${product.price}</h1>
-          {/* add to cart button */}
-          <button className="bg-red-400 hover:bg-red-500 duration-200 active:shadow-sm active:scale-95 text-white px-2 py-1 rounded-md text-xs font-bold shadow-md mt-5">Add to cart</button>
+    <div class="max-w-2xl mx-auto">
+      <div class="bg-white shadow-md rounded-lg max-w-sm h-1/2 md:w-[90%] mb-5">
+        <a href="#">
+          <img class="rounded-t-lg p-8 object-contain h-[20%} overflow-y-scroll" src={product.image} alt="product image" />
+        </a>
+        <div class="px-5 pb-5">
+          <a href="#">
+            <h3 class="text-gray-900 font-semibold text-xl tracking-tight ">{
+              product.title.length > 20 ? product.title.substring(0, 20) + "..." : product.title
+            }</h3>
+          </a>
+          <div class="flex items-center mt-2.5 mb-5">
+            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">5.0</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+            <a href="#"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+              to cart</a>
+          </div>
         </div>
       </div>
     </div>
