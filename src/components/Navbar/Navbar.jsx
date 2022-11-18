@@ -2,7 +2,13 @@ import React from 'react'
 import { BiSearchAlt2 } from 'react-icons/bi'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+import {useSelector} from "react-redux"
+
 const Navbar = () => {
+
+  const quantity = useSelector(state => state.cart.quantity)
+
+
   return (
     <div className="hidden lg:inline h-[60px] z-10 text-black drop-shadow-sm sticky top-0 bg-white">
       <div className=" px-5 bg-white  h-full flex justify-between">
@@ -31,7 +37,7 @@ const Navbar = () => {
             <div title="Cart" className="relative flex items-center justify-center w-8 h-8 cursor-pointer  rounded-full text-black">
               <Link to="/cart">
               <AiOutlineShoppingCart className="w-8 h-8" />
-              <p className="absolute text-xs bg-red-400 w-1/2 text-white  px-1 rounded-full absolute -top-1 right-0 font-bold">0</p>
+              <p className="absolute text-xs bg-red-400 w-1/2 text-white  px-1 rounded-full absolute -top-1 right-0 font-bold">{quantity}</p>
               </Link>
             </div>
           </div>

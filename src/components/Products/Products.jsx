@@ -38,11 +38,6 @@ const Products = ({ category, filters, sort }) => {
             setFilteredProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
         }
     }, [sort]);
-
-
-
-
-
     return (
 
         <div className="max-w-7xl lg:w-[80%] bg-gray-100/20 shadow-sm h-fit place-content-evenly mb-5 mt-0 mx-auto p-5 rounded-md drop-shadow-md">
