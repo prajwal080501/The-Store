@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { addProduct } from '../redux/cartRedux';
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux"
 const Singleproduct = () => {
     const [product, setProduct] = useState({});
     const [quantity, setQuantity] = useState(1);
@@ -14,7 +14,7 @@ const Singleproduct = () => {
     useEffect(() => {
         const getProduct = async () => {
             try {
-                const res = await axios.get(`https://thepjstore.herokuapp.com/api/products/find/${id}`);
+                const res = await axios.get(`/api/products/find/${id}`);
                 setProduct(res.data);
                 console.log(product);
             } catch (err) {
@@ -29,7 +29,7 @@ const Singleproduct = () => {
     }
 
     const handleClick = () => {
-        dispatch(addProduct({...product, quantity, size, color}));
+        dispatch(addProduct({ ...product, quantity, size, color }));
     }
     return (
         <div className="w-[90%] bg-gray-100/20 shadow-sm  h-fit mb-5 mt-5 mx-auto p-5 rounded-md drop-shadow-md">
@@ -46,15 +46,15 @@ const Singleproduct = () => {
                                 <div className="flex flex-row space-x-4 items-center justify-left">
                                     <select onChange={(e) => setSize(e.target.value)} className="w-[20%] h-10 px-2 rounded-md border-2 border-gray-300 focus:outline-none focus:border-red-400 duration-200 mt-5">
                                         {product.size && product.size.map((size) => (
-                                            <option  value={size}>{size}</option>
+                                            <option value={size}>{size}</option>
                                         ))}
                                     </select>
-                                    
+
                                     {/* add product description */}
 
-                                    <select onChange={(e) => setColor(e.target.value) } className="w-[20%] h-10 px-2 rounded-md border-2 border-gray-300 focus:outline-none focus:border-red-400 duration-200 mt-5">
+                                    <select onChange={(e) => setColor(e.target.value)} className="w-[20%] h-10 px-2 rounded-md border-2 border-gray-300 focus:outline-none focus:border-red-400 duration-200 mt-5">
                                         {product.color && product.color.map((color) => (
-                                            <option  value={color}>{color}</option>
+                                            <option value={color}>{color}</option>
                                         ))}
                                     </select>
                                 </div>

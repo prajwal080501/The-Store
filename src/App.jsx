@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer';
 import Cart from './pages/Cart';
 import ProductList from './pages/ProductList';
 import Singleproduct from './pages/Singleproduct';
+import Success from './pages/Success';
 
 function App() {
   const [modalOpen, setModalOpen] = useState(true);
@@ -37,6 +38,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/singleproduct/:id" element={<Singleproduct />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/success" element={<Success/>} />
           <Route path={
             "/products/:id"
           } element={<ProductList />} />

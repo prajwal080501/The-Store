@@ -11,7 +11,7 @@ const Products = ({ category, filters, sort }) => {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const res = await axios.get(category ? `https://thepjstore.herokuapp.com/api/products?category=${category}` : "https://thepjstore.herokuapp.com/api/products/random");
+                const res = await axios.get(category ? `/api/products?category=${category}` : "https://thepjstore.herokuapp.com/api/products/random");
                 setProducts(res.data);
                 console.log(products);
             } catch (err) {

@@ -1,19 +1,36 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import axios from 'axios';
 import StripeCheckout from "react-stripe-checkout";
-
 const KEY = process.env.STRIPE_PUBLIC_KEY;
 const Cart = () => {
   const [stripeToken, setStripeToken] = useState(null);
 
-  const handleToken = (token) => {
-    setStripeToken(token);
-  }
-
-  console.log(stripeToken);
+  const navigate = useNavigate();
   const cart = useSelector(state => state.cart)
   console.log(cart)
+
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      const res = await axios.post("http://localhost:8000/api/checkout/payment", {
+        token: stripeToken.id,
+        amount: 500
+      });
+      console.log(res.data)
+      navigate("/success")
+    };
+
+
+    stripeToken && makeRequest();
+  }, [stripeToken, navigate]);
+
+
+    
   return (
     <div className="bg-gray-100">
       <div className="container mx-auto mt-10">
@@ -93,16 +110,17 @@ const Cart = () => {
                 <span>&#8377; {cart.total}</span>
               </div>
               <StripeCheckout
-                name="The Pj Store"
-                stripekey={KEY}
-                image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                description={`Your total is $${cart.total}`}
-                token={handleToken}
-                billingAddress
-                shippingAddress
-                amount={cart.total * 100}
-                key={KEY}
-              />
+              name="The Pj Store"
+              image="https://avatars.githubusercontent.com/u/1486366?v=4"
+              billingAddress
+              shippingAddress
+              description={`Your total is $${cart.total}`}
+              amount={cart.total * 100}
+              token={onToken}
+              stripeKey="pk_test_51M3f5eSD394WB9ZdcogXU7SKsHEGJMlqB9RezFGTvvEaT2eLHNlEWZHtoAOw7TaxxiLIffX5y00T4CAPhRhJYO6u00HV084lEb"
+            >
+              <button>CHECKOUT NOW</button>
+            </StripeCheckout>
             </div>
           </div>
 
