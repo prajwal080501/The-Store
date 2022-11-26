@@ -1,7 +1,6 @@
 const e = require("express");
 const Product = require("../models/Product");
 const ErrorHander = require("../utils/errorhander");
-const createError = require("../utils/errorhander");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 // create new product - Admin
 exports.createProduct = catchAsyncErrors(
@@ -13,23 +12,17 @@ exports.createProduct = catchAsyncErrors(
         });
     }
 )
-
-exports.getAllProducts = async (req, res, next) => {
-    try {
+exports.getAllProducts = catchAsyncErrors(
+    async (req, res, next) => {
         const products = await Product.find();
-
         res.status(200).json({
             success: true,
             products
         });
-    } catch (error) {
-        console.log(error);
-    }
 }
-
-exports.deleteProduct = async (req, res, next) => {
-    try {
-        // use errorhander to handle error
+)
+exports.deleteProduct = catchAsyncErrors(
+    async (req, res, next) => {
         const product = await Product.findById(req.params.id);
         if (!product) {
             return next(new ErrorHander('Product not found', 404));
@@ -39,13 +32,11 @@ exports.deleteProduct = async (req, res, next) => {
             success: true,
             message: "Product deleted"
         });
-    } catch (error) {
-        console.log(error);
-    }
 }
+)
 // update product
-exports.updateProduct = async (req, res, next) => {
-    try {
+exports.updateProduct = catchAsyncErrors(
+    async (req, res, next) => {
         const updatedProduct = await Product.findByIdAndUpdate({
             _id: req.params.id
         }, req
@@ -58,15 +49,18 @@ exports.updateProduct = async (req, res, next) => {
             success: true,
             updatedProduct
         });
-    } catch (error) {
-        console.log(error);
-    }
 }
+)
 
-exports.getProductDetails = async (req, res, next) => {
-
+exports.getProductDetails = catchAsyncErrors(
+    async (req, res, next) => {
         const product = await Product.findById(req.params.id);
         if (!product) {
             return next(new ErrorHander('Product not found', 404));
         }
-};
+        res.status(200).json({
+            success: true,
+            product
+        });
+}
+)
