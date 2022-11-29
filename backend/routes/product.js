@@ -3,7 +3,7 @@ const { getAllProducts, createProduct, deleteProduct, updateProduct, getProductD
 
 const router = express.Router();
 
-router.route("/all").get(getAllProducts);
+router.route("/").get(getAllProducts);
 router.route("/create").post(createProduct);
 router.route("/update/:id").put(updateProduct);
 router.route("/delete/:id").delete(deleteProduct);

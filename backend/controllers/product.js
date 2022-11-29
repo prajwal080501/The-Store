@@ -1,7 +1,9 @@
 const e = require("express");
 const Product = require("../models/Product");
 const ErrorHander = require("../utils/errorhander");
+
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const Features = require("../utils/features");
 // create new product - Admin
 exports.createProduct = catchAsyncErrors(
     async (req, res, next) => {
@@ -14,12 +16,13 @@ exports.createProduct = catchAsyncErrors(
 )
 exports.getAllProducts = catchAsyncErrors(
     async (req, res, next) => {
-        const products = await Product.find();
+        const feature = new Features(Product.find(), req.query).search();
+        const products = await feature.query;
         res.status(200).json({
             success: true,
             products
         });
-}
+    }
 )
 exports.deleteProduct = catchAsyncErrors(
     async (req, res, next) => {
@@ -32,7 +35,7 @@ exports.deleteProduct = catchAsyncErrors(
             success: true,
             message: "Product deleted"
         });
-}
+    }
 )
 // update product
 exports.updateProduct = catchAsyncErrors(
@@ -49,7 +52,7 @@ exports.updateProduct = catchAsyncErrors(
             success: true,
             updatedProduct
         });
-}
+    }
 )
 
 exports.getProductDetails = catchAsyncErrors(
@@ -62,5 +65,5 @@ exports.getProductDetails = catchAsyncErrors(
             success: true,
             product
         });
-}
+    }
 )
